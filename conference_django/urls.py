@@ -7,7 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # core urls
     path('', include('core.urls')),
-    path('contact/', views.contact),
+    path('contact/', views.contact, name='contact'),
 
     # conference urls
      path('conference/', include('conference.urls'))
