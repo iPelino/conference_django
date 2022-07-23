@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} Conferences{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Conferences</h1>
+        {% for conference in conferences %}
+            <h1>{{ conference.title|capfirst }} </h1>
+            {{ conference.start_date }}<br>
+            {{ conference.end_date }}
+            {{ conference.speakers }}
+        {% endfor %}
+    </div>
+{% endblock %}
