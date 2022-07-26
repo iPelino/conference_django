@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>{{ conference.title }}</h1>
+        <p>{{ conference.venue }}</p>
+        <p>{{ conference.start_date }}</p>
+        <p>{{ conference.end_date }}</p>
+
+        <button class="btn btn-secondary"><a href="{% url 'conf-register' conference.id %}" class="text-white">Register</a></button>
+    </div>
+
+{% endblock %}

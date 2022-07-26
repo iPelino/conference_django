@@ -4,10 +4,9 @@
     <div class="container">
         <h1>Conferences</h1>
         {% for conference in conferences %}
-            <h1>{{ conference.title|capfirst }} </h1>
-            {{ conference.start_date }}<br>
-            {{ conference.end_date }}
-            {{ conference.speakers }}
+            <h2><a href="{% url 'conference-detail' conference.id %}">{{ conference.title|capfirst }} </a></h2>
+            <p>{{ conference.venue }}</p>
+            <hr>
         {% endfor %}
     </div>
 {% endblock %}

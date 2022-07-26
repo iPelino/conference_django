@@ -27,6 +27,8 @@ class Conference(models.Model):
     end_date = models.DateTimeField()
     venue = models.CharField(max_length=200)
     entry_fee = models.DecimalField(max_digits=8, decimal_places=2) #100000.00
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
@@ -41,3 +43,20 @@ class Schedule(models.Model):
 
     def __str__(self):
         return self.conference.title + " - " + self.topic
+
+
+class Participant(models.Model):
+    name = models.CharField(max_length=200)
+    conference = models.ForeignKey(Conference, on_delete=models.CASCADE)
+    email = models.EmailField()
+    phone = models.CharField(max_length=50)
+    motivation = models.TextField(null=True)
+
+    def __str__(self):
+        return self.name
+
+
+''' CREATING MODEL OBJECTS'''
+
+# ModelName.objects.create()
+# create an instance of the Model --> obj  = ModelName() --> obj.save()
