@@ -65,3 +65,15 @@ def add_conf(request):
     else:
         form = ConferenceForm()
     return render(request, 'conference/add_conference.html', {'form': form})
+
+
+@login_required()
+def conference_edit(request, id):
+    conf = get_object_or_404(Conference, id=id)
+    if request.method == 'POST':
+        form = ConferenceForm(request.POST, instance=conf)
+        if form.is_valid():
+            form.save()
+    else:
+        form = ConferenceForm(instance=conf)
+    return render(request, 'conference/edit_conference.html', {'form': form})

@@ -7,6 +7,7 @@ urlpatterns = [
     # localhost:8000/conference/software-development
     path('<int:id>', views.conference_detail, name="conference-detail"),
     path('<int:id>/register', views.conference_registration, name="conf-register"),
+    path('<int:id>/edit', views.conference_edit, name="conference-update"),
     # localhost:8000/conference/software-development/register
     # path('<slug:name>/register', views.conference_registration),
     # path('<int:year>', views.yearly_conferences)
