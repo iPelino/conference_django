@@ -8,3 +8,7 @@ def home(request):
 
 def contact(request):
     return render(request, 'core/contact.html')
+
+
+def manage(request):
+    return render(request, 'core/manage.html')

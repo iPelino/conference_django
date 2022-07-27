@@ -14,6 +14,9 @@ urlpatterns = [
     # conference urls
     path('conference/', include('conference.urls')),
 
+    # manage url
+    path('manage/', views.manage, name='manage'),
+
     # Auth Urls
     path('accounts/', include('django.contrib.auth.urls'))
     # accounts/login/ [name='login']
