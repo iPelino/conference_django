@@ -2,6 +2,12 @@
 {% block title %} Conferences{% endblock %}
 {% block content %}
     <div class="container">
+{#        <button type="submit" class="btn btn-primary"></button>#}
+    {% if request.user.is_authenticated %}
+    <div class="mt-2">
+        <a href="{% url 'add-conference' %}" class="btn btn-primary">Add Conference</a>
+    </div>
+    {% endif %}
         <h1>Conferences</h1>
         {% for conference in conferences %}
             <h2><a href="{% url 'conference-detail' conference.id %}">{{ conference.title|capfirst }} </a></h2>

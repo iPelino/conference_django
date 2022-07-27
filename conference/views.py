@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
@@ -52,6 +53,7 @@ def yearly_conferences(request, year):
     return HttpResponse(year + "Conferences")
 
 
+@login_required
 def add_conf(request):
     if request.method == 'POST':
         form = ConferenceForm(request.POST)
