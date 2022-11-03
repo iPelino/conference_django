@@ -1,0 +1,32 @@
+.body{
+    font-family: 'Poppins', sans-serif !important;
+}
+.my-dark-blue{
+    color: #2F2E41;
+}
+.my-dark-gray{
+    color: #8E8E8E;
+}
+.my-red{
+    color: #DA5E48;
+}
+.my-darkish{
+    color: #1C1C1C;
+}
+.navbar{
+    background: #DA5E48!important;
+}
+.navbar-brand{
+    font-weight: bolder;
+    font-size: 32px;
+}
+.nav-link{
+    font-size: 1.2em;
+}
+.hero h1{
+    font-weight: bolder;
+}
+.hero p{
+    /*font-weight: bold;*/
+}
+

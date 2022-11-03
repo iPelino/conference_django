@@ -1,19 +1,181 @@
 {% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
 
-
-{% block title %}
-
-{% endblock %}
+{% block title %}{{ conference.title }}{% endblock %}
 
 {% block content %}
 
-    <div class="container">
-        <h1>{{ conference.title }}</h1>
-        <p>{{ conference.venue }}</p>
-        <p>{{ conference.start_date }}</p>
-        <p>{{ conference.end_date }}</p>
+    <!-- jumbotron -->
 
-        <button class="btn btn-secondary"><a href="{% url 'conf-register' conference.id %}" class="text-white">Register</a></button>
+    <div class="jumbotron jumbotron-fluid bg-warning text-dark">
+        <div class="container text-sm-center pt-5">
+            <h1 class="display-4">{{ conference.title }}</h1>
+            <p class="lead">{{ conference.con_theme }}</p>
+            <div class="btn-group mt-4" role="group" aria-label="Callout buttons">
+                <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#register">Register Now</button>
+                <a href="#speakers" class="btn btn-light btn-lg">See Speakers</a>
+            </div>
+        </div>
+    </div><!-- /jumbotron -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="mb-3 text-lead">Expert Speakers</h3>
+                <p class="text-justify">{{ conference.description }}</p>
+
+            </div>
+            <div class="col">
+                <img class="card-img-top" src="https://dummyimage.com/640x360/eee/aaa" alt="">
+            </div>
+            <div class="col">
+                <h3 class="mb-3 text-lead">What you will Learn</h3>
+                <div class="list-group">
+                    {% for schedule in conference.schedule_set.all %}
+                        <a href="#" class="list-group-item list-group-item-action">{{ schedule.topic }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- SPEAKERS-->
+        <h1 id="speakers" class="display-4 text-center my-5 text-muted">Speakers</h1>
+        <div class="row">
+            {% for speaker in conference.speakers.all %}
+            <div class="col-sm-12 col-md-6, col-lg-4">
+                    <div class="card mb-3">
+                        <img class="card-img-top" src="
+                            {% if speaker.profile_picture.url is not None%} {{ speaker.profile_picture.url }}
+                            {% else %}
+                                https://dummyimage.com/640x360/eee/aaa
+                            {% endif %}"  alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ speaker.name }}</h5>
+                            <p class="card-text">{{ speaker.description }}</p>
+                        </div>
+                    </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <!--END SPEAKERS-->
+
+        <!--SCHEDULE -->
+        <h1 id="schedule" class="display-4 text-center my-5 text-muted">Schedule</h1>
+        <ul class="list-group">
+            {% for schedule in conference.schedule_set.all %}
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="mb-1">Keynote: {{ schedule.topic}} </h5>
+                        <span class="badge badge-pill badge-warning p-2">
+                            {{ schedule.start_time }} - {{ schedule.end_time }}
+                        </span>
+                    </div>
+                    <p class="mb-1">{{ schedule.speaker }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <!--END SCHEDULE-->
+
+        <!-- callout button -->
+        <button type="button" class="btn btn-outline-dark btn-lg d-block mx-auto my-5" data-bs-toggle="modal" data-bs-target="#register" data-bs-whatever="@mdo">Don't Miss out Register Now</button>
+        <!-- callout button -->
+
+        <!-- ===============================================
+            FORM MODAL
+        =============================================== -->
+        <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="Register form" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title" id="exampleModalLabel">Register for Conference</h5>
+                    <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+{#                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
+                </div>
+                <div class="modal-body">
+                    <!-- registration form -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Hurry !</strong> Early bird registration ends in two days.
+                            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <h5 class="mb-4"> Basic Info.</h5>
+
+                        <div>
+                            <label for="role">Job Role:</label>
+                            <select class="custom-select form-control" id="role">
+                                <option value="Full Stack js Developer">Full Stack JS Developer</option>
+                                <option value="Front End Developer">Front End Developer</option>
+                                <option value="Back End Developer">Back End Developer</option>
+                                <option value="designer">Designer</option>
+                                <option value="student">Student</option>
+                            </select>
+                        </div>
+                        <hr class="my-4">
+                        <h5 class="mb-4">Which Topics Interest You Most?</h5>
+
+                        {{ form.non_field_errors }}
+                        <div class="form-group">
+                            {{ form.name.errors }}
+                            <label for="{{ form.name.id_for_label }}"></label>
+                            {{ form.name|as_crispy_field }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.email.errors }}
+                            <label for="{{ form.email.id_for_label }}"></label>
+                            {{ form.email|as_crispy_field }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.phone.errors }}
+                            <label for="{{ form.phone.id_for_label }}"></label>
+                            {{ form.phone|as_crispy_field }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.role.errors }}
+                            <label for="{{ form.role.id_for_label }}"></label>
+                            {{ form.role }}
+                        </div>
+
+
+{#                        {{ form|crispy }}#}
+
+
+{#                        <div class="fieldWrapper">#}
+{#                            {{ form.sender.errors }}#}
+{#                            <label for="{{ form.sender.id_for_label }}">Your email address:</label>#}
+{#                            {{ form.sender }}#}
+{#                        </div>#}
+{#                        <div class="fieldWrapper">#}
+{#                            {{ form.cc_myself.errors }}#}
+{#                            <label for="{{ form.cc_myself.id_for_label }}">CC yourself?</label>#}
+{#                            {{ form.cc_myself }}#}
+{#                        </div>#}
+
+                        <hr class="mb-4">
+
+                        <button type="submit" class="btn btn-dark btn-lg">Register</button>
+                    </form><!-- /registration form -->
+                </div>
+                </div>
+            </div>
+            </div>
+
     </div>
+
+{#    <div class="container">#}
+{#        <h1>{{ conference.title }}</h1>#}
+{#        <p>{{ conference.venue }}</p>#}
+{#        <p>{{ conference.start_date }}</p>#}
+{#        <p>{{ conference.end_date }}</p>#}
+{##}
+{#        <button class="btn btn-secondary"><a href="" class="text-white">Register</a></button>#}
+{#    </div>#}
 
 {% endblock %}

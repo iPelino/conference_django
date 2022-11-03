@@ -1,7 +1,18 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Home{% endblock %}
 {% block content %}
+    <div class="container-fluid">
+        <div class="row py-3">
+            <div class="col-5">
+                <img src="{% static "images/conference.svg" %}" alt="" class="img-fluid">
+            </div>
+            <div class="col py-5 hero">
+                <h1 class="display-3 text-center my-dark-blue">East Africa’s Biggest Hub of Tech Meetups</h1>
+                <p class="text-center my-red">The ultimate power of information and Technology accelerator</p>
+            </div>
+        </div>
 
-    <h1>Home Page</h1>
+    </div>
 
 {% endblock %}

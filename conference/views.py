@@ -17,9 +17,32 @@ def conferences(request):
 def conference_detail(request, id):
     # conf = Conference.objects.get(id=id)
     conf = get_object_or_404(Conference, id=id)
+    form = ParticipantForm(initial={'conference': conf})
+    if request.method == 'POST':
+        form = ParticipantForm(request.POST, initial={'conference': conf})
+        if form.is_valid():
+            x = form.cleaned_data
+            #         # Participant.objects.create(
+            #         #     name=x['name'],
+            #         #     conference=x['conference'],
+            #         #     email=x['email'],
+            #         #     phone=x['phone'],
+            #         #     motivation=x['motivation']
+            #         # )
+            p = Participant(
+                name=x['name'],
+                conference=conf,
+                email=x['email'],
+                phone=x['phone'],
+                motivation=x['motivation']
+            )
+            p.save()
+
     return render(request,
                   'conference/conference_detail.html',
-                  {'conference': conf})
+                  {'conference': conf,
+                   'form': form
+                   })
 
 
 def conference_registration(request, id):

@@ -23,11 +23,13 @@ class Speaker(models.Model):
 
 class Conference(models.Model):
     title = models.CharField(max_length=200)
+    con_theme = models.TextField(max_length=500, null=True, blank=True)
     speakers = models.ManyToManyField(Speaker)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     venue = models.CharField(max_length=200)
     entry_fee = models.DecimalField(max_digits=8, decimal_places=2) #100000.00
+    description = models.TextField(null=True, blank=True)
     # created_by = models.ForeignKey(User, on_delete=models.PROTECT)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -48,11 +50,21 @@ class Schedule(models.Model):
 
 
 class Participant(models.Model):
+    ROLE_CHOICES = (
+        ('BED', 'Back End Developer'),
+        ('FED', 'Front End Developer'),
+        ('FSD', 'Full Stack Developer'),
+        ('DES', 'Designer'),
+        ('STU', 'Student'),
+        ('ENT', 'Enthusiast'),
+        ('OTH', 'Other'),
+    )
     name = models.CharField(max_length=200)
     conference = models.ForeignKey(Conference, on_delete=models.CASCADE)
     email = models.EmailField()
     phone = models.CharField(max_length=50)
     motivation = models.TextField(null=True)
+    role = models.CharField(max_length=100, choices=ROLE_CHOICES)
 
     def __str__(self):
         return self.name
