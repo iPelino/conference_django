@@ -3,15 +3,99 @@
 {% block title %}Home{% endblock %}
 {% block content %}
     <div class="container-fluid">
-        <div class="row py-3">
+        <div class="row py-5 hero">
             <div class="col-5">
                 <img src="{% static "images/conference.svg" %}" alt="" class="img-fluid">
             </div>
             <div class="col py-5 hero">
                 <h1 class="display-3 text-center my-dark-blue">East Africa’s Biggest Hub of Tech Meetups</h1>
-                <p class="text-center my-red">The ultimate power of information and Technology accelerator</p>
+                <p class="text-center">The ultimate power of information and Technology accelerator</p>
+                <div class="text-center">
+                    <a href="" class="btn btn-lg btn-my-red mx-2">Contact Us</a>
+                    <a href="" class="btn btn-lg btn-my-grey mx-2">Join a Conference</a>
+                </div>
             </div>
+        </div>  <!--END HERO-->
+        <div class="row py-5 services px-2">
+            <div class="col-md-6 col-sm-12 text-center">
+                <h2 class="display-4 text-white">What We Do</h2>
+                <p class="text-white text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                    ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                    officia deserunt mollit anim id est laborum
+                </p>
+                <p class="text-white text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                    ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                    officia deserunt mollit anim id est laborum
+                </p>
+                <a href="" class="btn btn-lg btn-my-red mx-2 mt-2">Join a Conference</a>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="my-card text-center col-md-6 col-sm-12 p-2">
+                        <img src="{% static 'images/community.svg' %}" alt="" class="img-fluid">
+                        <h4 class="my-red">Community Hangouts</h4>
+                        <p class="text-white">Lorem ipsum dolor sit amet,
+                            consectetur adipiscing.
+                        </p>
+                    </div>
+                    <div class="my-card text-center col-md-6 col-sm-12 p-2">
+                        <img src="{% static 'images/speaker.svg' %}" alt="" class="img-fluid">
+                        <h4 class="my-red">Community Hangouts</h4>
+                        <p class="text-white">Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit, sed do eiusmod tempor.
+                        </p>
+                    </div>
+                    <div class="my-card text-center col-md-6 col-sm-12 p-2">
+                        <img src="{% static 'images/conference_speaker.svg' %}" alt="" class="img-fluid">
+                        <h4 class="my-red">Community Hangouts</h4>
+                        <p class="text-white">Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit, sed do eiusmod tempor.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div><!--END Service-->
+        <div class="row py-5 about">
+            <div class="col-md-12">
+                <h2 class="display-4 my-dark-blue text-center">Meet our Team</h2>
+                <div class="team">
+                    <div class="row text-center">
+                        <div class="col-md">
+                            <img src="{% static 'images/profiles/leilani.jpg' %}" alt="" class="team-image rounded img-fluid">
+                            <h1 class="display-5">CEO</h1>
+                            <p class="text-muted">Lorem ipsum dolor sit amet,</p>
+                        </div>
+                        <div class="col-md">
+                            <img src="{% static 'images/profiles/leilani.jpg' %}" alt="" class="team-image rounded img-fluid">
+                            <h1 class="display-5">CEO</h1>
+                            <p class="text-muted">Lorem ipsum dolor sit amet,</p>
+                        </div>
+                        <div class="col-md">
+                            <img src="{% static 'images/profiles/leilani.jpg' %}" alt="" class="team-image rounded img-fluid">
+                            <h1 class="display-5">CEO</h1>
+                            <p class="text-muted">Lorem ipsum dolor sit amet,</p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div> <!--END ABOUT-->
+        <div class="row contact">
+
         </div>
 
+
+
     </div>
+
 {% endblock %}

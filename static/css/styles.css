@@ -13,6 +13,22 @@
 .my-darkish{
     color: #1C1C1C;
 }
+.btn-dark-blue{
+    background: #2F2E41;
+    color: #FFFFFF;
+    border-radius: 5px;
+
+}
+.btn-my-red{
+    background: #DA5E48;
+    color: #FFFFFF;
+    border-radius: 5px;
+}
+.btn-my-grey{
+    background: #8E8E8E;
+    color: #FFFFFF;
+    border-radius: 5px;
+}
 .navbar{
     background: #DA5E48!important;
 }
@@ -23,6 +39,10 @@
 .nav-link{
     font-size: 1.2em;
 }
+/*HERO*/
+.hero{
+    padding: 80px 0 !important;
+}
 .hero h1{
     font-weight: bolder;
 }
@@ -30,3 +50,26 @@
     /*font-weight: bold;*/
 }
 
+/*SERVICES*/
+.services{
+    background: #2F2E41;
+    padding: 80px 0 !important;
+
+}
+
+.my-card{
+    width: 18rem;
+}
+.my-card>.img-fluid{
+    max-width: 10rem;
+}
+
+/*ABOUT*/
+.about{
+    background: #FFFFFF;
+    padding: 80px 0 !important;
+
+}
+.team-image{
+    max-width: 200px;
+}
